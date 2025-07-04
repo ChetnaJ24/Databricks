@@ -1,0 +1,272 @@
+{
+  "datasets": [
+    {
+      "name": "fe7c1721",
+      "displayName": "sales_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_bronze.sales_pl"
+      ]
+    },
+    {
+      "name": "84e6f0a4",
+      "displayName": "products_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_bronze.products_pl"
+      ]
+    },
+    {
+      "name": "46e60e09",
+      "displayName": "customers_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_bronze.customers_pl"
+      ]
+    },
+    {
+      "name": "78af72bf",
+      "displayName": "sales_cleaned_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_silver.sales_cleaned_pl"
+      ]
+    },
+    {
+      "name": "bb980fe8",
+      "displayName": "products_cleaned_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_silver.products_cleaned_pl"
+      ]
+    },
+    {
+      "name": "acb33624",
+      "displayName": "customer_cleaned_pl",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_silver.customer_cleaned_pl"
+      ]
+    },
+    {
+      "name": "1fc7fad8",
+      "displayName": "auto_marketing_ad_clicks",
+      "queryLines": [
+        "SELECT * FROM auto.chetna.auto_marketing_ad_clicks"
+      ]
+    },
+    {
+      "name": "f3e298f0",
+      "displayName": "auto_marketing_campaigns",
+      "queryLines": [
+        "SELECT * FROM auto.chetna_bronze.auto_marketing_campaigns"
+      ]
+    },
+    {
+      "name": "5f6ca59a",
+      "displayName": "auto_marketing_leads",
+      "queryLines": [
+        "SELECT * FROM auto.chetna.auto_marketing_leads"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "c0279a0e",
+      "displayName": "Sales by Product",
+      "layout": [
+        {
+          "widget": {
+            "name": "79bb1794",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fe7c1721",
+                  "fields": [
+                    {
+                      "name": "product_id",
+                      "expression": "`product_id`"
+                    },
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "product_id",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "product_id"
+                },
+                "y": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_amount"
+                }
+              },
+              "frame": {
+                "title": "Sales by Product",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "291e46a0",
+            "multilineTextboxSpec": {
+              "lines": [
+                ""
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 1,
+            "width": 6,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "72a83dbd",
+      "displayName": "Campaign Budget_overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "fe36e11a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f3e298f0",
+                  "fields": [
+                    {
+                      "name": "budget_usd",
+                      "expression": "`budget_usd`"
+                    },
+                    {
+                      "name": "start_date",
+                      "expression": "`start_date`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "budget_usd",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "budget_usd"
+                },
+                "color": {
+                  "fieldName": "start_date",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "start_date"
+                }
+              },
+              "frame": {
+                "title": "Campaign Budget Overview",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "9c163fd1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f3e298f0",
+                  "fields": [
+                    {
+                      "name": "campaign_name",
+                      "expression": "`campaign_name`"
+                    },
+                    {
+                      "name": "sum(budget_usd)",
+                      "expression": "SUM(`budget_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "campaign_name",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "campaign_name"
+                },
+                "y": {
+                  "fieldName": "sum(budget_usd)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of budget_usd"
+                }
+              },
+              "frame": {
+                "title": "Total sales by campaign name",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
